@@ -1,3 +1,13 @@
+pyjwt (2.3.0-1ubuntu0.3) jammy-security; urgency=medium
+
+  * SECURITY UPDATE: Incorrect authorization of invalid JWS token.
+    - debian/patches/CVE-2026-32597.patch: Add _supported_crit and checks
+      for valid crit header in jwt/api_jws.py. Add tests in
+      tests/test_api_jws.py and tests/test_api_jwt.py.
+    - CVE-2026-32597
+
+ -- Hlib Korzhynskyy <hlib.korzhynskyy@canonical.com>  Thu, 26 Mar 2026 14:58:14 -0230
+
 pyjwt (2.3.0-1ubuntu0.2) jammy-security; urgency=medium
 
   * SECURITY REGRESSION: Revert inadvertent package version bump to 2.4.0
