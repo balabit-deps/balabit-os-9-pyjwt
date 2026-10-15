@@ -1,3 +1,70 @@
+pyjwt (2.3.0-1ubuntu0.6) jammy-security; urgency=medium
+
+  * SECURITY UPDATE: Unauthenticated Denial of Service via unbounded thread
+    lock waiting during JWKS cache refreshes
+    - debian/patches/CVE-2026-101917.patch: Throttle repeated PyJWKClient
+      refreshes in jwt/jwks_client.py, tests/test_jwks_client.py.
+    - CVE-2026-101917
+  * SECURITY UPDATE: Uncaught recursion exception in get_signing_key_from_jwt
+    - debian/patches/CVE-2026-101918.patch: fix: normalize recursive JWT 
+      payload errors in jwt/api_jwt.py, tests/test_api_jwt.py,
+      tests/test_jwks_client.py.
+    - CVE-2026-101918
+  * SECURITY UPDATE: Uncaught exception in RSAAlgorithm.from_jwk when 
+    processing malformed RSA key.
+    - debian/patches/CVE-2026-102274.patch: Skip malformed JWKs in JWK sets in
+      jwt/api_jwk.py, tests/test_api_jwk.py.
+    - CVE-2026-102274
+  * SECURITY UPDATE: Public/private key identity confusion via mismatched x 
+    and d parameters in OKPAlgorithm.from_jwk
+    - debian/patches/CVE-2026-102275.patch: fix: reject inconsistent OKP 
+      private keys in jwt/algorithms.py, tests/test_algorithms.py.
+    - CVE-2026-102275
+
+ -- Hurman <hurman@canonical.com>  Thu, 15 Oct 2026 12:31:23 +0800
+
+pyjwt (2.3.0-1ubuntu0.5) jammy-security; urgency=medium
+
+  * SECURITY UPDATE: Unvalidated HTTP redirect traversal in PyJWKClient
+    - debian/patches/CVE-2026-102267.patch: Reject redirects in PyJWKClient
+      fetches in jwt/jwks_client.py, tests/test_jwks_client.py,
+      jwt/exceptions.py, jwt/__init__.py.
+    - CVE-2026-102267
+  * SECURITY UPDATE: Algorithm confusion via whitespace and line-break evasion
+    in is_pem_format
+    - debian/patches/CVE-2026-102268.patch: fix: reject loader-accepted PEM
+      variants in jwt/utils.py, tests/test_algorithms.py.
+    - CVE-2026-102268
+  * SECURITY UPDATE: Algorithm confusion via DER-encoded public key bytes in 
+    HMACAlgorithm.prepare_key
+    - debian/patches/CVE-2026-102271.patch: fix: reject DER public keys as 
+      HMAC secrets in jwt/algorithms.py, tests/test_algorithms.py.
+    - CVE-2026-102271
+  * SECURITY UPDATE: Key inspection bypass via UTF-8 Byte Order Mark (BOM) in
+    HMACAlgorithm.prepare_key
+    - debian/patches/CVE-2026-102272.patch: Reject encoded JWKs as HMAC keys
+      in jwt/algorithms.py, tests/test_algorithms.py.
+    - CVE-2026-102272
+  * SECURITY UPDATE: Key-type spoofing via nested JWK container structures in 
+    HMACAlgorithm.prepare_key
+    - debian/patches/CVE-2026-102273.patch: fix: reject public JWK container
+      HMAC keys in jwt/algorithms.py, tests/test_algorithms.py.
+    - CVE-2026-102273
+
+ -- Hurman <hurman@canonical.com>  Mon, 12 Oct 2026 11:05:30 +0800
+
+pyjwt (2.3.0-1ubuntu0.4) jammy-security; urgency=medium
+
+  * SECURITY UPDATE: multiple security vulnerabilities
+    - debian/patches/CVE-2026-48522-to-48526.patch: Bundle security fixes and
+      hardening into 2.13.0 in jwt/algorithms.py, jwt/api_jws.py,
+      jwt/jwks_client.py, tests/test_algorithms.py, tests/test_api_jws.py,
+      tests/test_jwks_client.py.
+    - CVE-2026-48522
+    - CVE-2026-48526
+
+ -- Shishir Subedi <shishir.subedi@canonical.com>  Thu, 24 Sep 2026 11:05:48 +0545
+
 pyjwt (2.3.0-1ubuntu0.3) jammy-security; urgency=medium
 
   * SECURITY UPDATE: Incorrect authorization of invalid JWS token.
